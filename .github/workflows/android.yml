@@ -27,3 +27,11 @@ jobs:
       run: ./gradlew build
     - name: List Files & Folders
       run: tree
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        token: ${{ secrets.PAT_GITHUB_TOKEN }}
+        tag_name: workflow_${{github.run_number}}
+        name: Release ${{github.run_number}}
+        files: |
+           build/libs/DracoLoader-main-SNAPSHOT.jar
